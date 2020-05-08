@@ -83,7 +83,8 @@ class _RegisterState extends State<Register> {
                   if (_formKey.currentState.validate()) {
                     dynamic result = await _authService.signUp(email, password);
                     if (result == null) {
-                      setState(() => 'Please supply a valid combination.');
+                      setState(
+                          () => error = 'Please supply a valid combination.');
                     }
                   }
                 },
