@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "100885144267",
+    "firebase_url": "https://istudy-63238.firebaseio.com",
+    "project_id": "istudy-63238",
+    "storage_bucket": "istudy-63238.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:100885144267:android:a89226817a4dbefc50714e",
+        "android_client_info": {
+          "package_name": "pt.icm.istudy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "100885144267-ccc1rpgoocq6chip9sofotsu7dtfvb0a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA85epfO7fpaxNmxQON-BhqrowCzdCvIFA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "100885144267-ccc1rpgoocq6chip9sofotsu7dtfvb0a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
