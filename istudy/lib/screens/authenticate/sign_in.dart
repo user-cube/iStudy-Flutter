@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:istudy/services/auth.dart';
+import 'package:istudy/widgets/image_banner.dart';
 
 class SignIn extends StatefulWidget {
   final Function toogleView;
@@ -48,10 +49,28 @@ class _SignInState extends State<SignIn> {
           key: _formKey,
           child: Column(
             children: <Widget>[
+              ImageBanner(assetPath: "assets/images/logo.jpg"),
               SizedBox(
                 height: 20.0,
               ),
               TextFormField(
+                decoration: InputDecoration(
+                  hintText: 'Email',
+                  fillColor: Colors.white,
+                  filled: true,
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Colors.grey,
+                      width: 2.0,
+                    ),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Colors.grey,
+                      width: 2.0,
+                    ),
+                  ),
+                ),
                 validator: (val) =>
                     val.isEmpty || !val.contains('@') ? 'Enter an email' : null,
                 onChanged: (val) {
@@ -62,6 +81,23 @@ class _SignInState extends State<SignIn> {
                 height: 20.0,
               ),
               TextFormField(
+                decoration: InputDecoration(
+                  hintText: 'Password',
+                  fillColor: Colors.white,
+                  filled: true,
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Colors.grey,
+                      width: 2.0,
+                    ),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Colors.grey,
+                      width: 2.0,
+                    ),
+                  ),
+                ),
                 validator: (val) =>
                     val.length < 6 ? 'Enter a password 6+ chars long' : null,
                 obscureText: true,
