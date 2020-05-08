@@ -16,18 +16,6 @@ class AuthService {
     return _firebaseAuth.onAuthStateChanged.map(_userFromFirebase);
   }
 
-  //sing in anonymous
-  Future signInAnon() async {
-    try {
-      AuthResult result = await _firebaseAuth.signInAnonymously();
-      FirebaseUser user = result.user;
-      return _userFromFirebase(user);
-    } catch (e) {
-      print(e.toString());
-      return null;
-    }
-  }
-
   //sign in
   Future signInEmailPassword(String email, String password) async {
     try {
@@ -36,7 +24,7 @@ class AuthService {
       FirebaseUser firebaseUser = authResult.user;
       return _userFromFirebase(firebaseUser);
     } catch (e) {
-      print("Error: " + e.toString());
+      print("SignIn Error: " + e.toString());
       return null;
     }
   }
@@ -50,7 +38,7 @@ class AuthService {
       FirebaseUser firebaseUser = authResult.user;
       return _userFromFirebase(firebaseUser);
     } catch (e) {
-      print(e.toString());
+      print("SignUp Error: " + e.toString());
       return null;
     }
   }
@@ -61,7 +49,7 @@ class AuthService {
     try {
       return await _firebaseAuth.signOut();
     } catch (e) {
-      print(e.toString());
+      print("SignOut Error: " + e.toString());
       return null;
     }
   }
