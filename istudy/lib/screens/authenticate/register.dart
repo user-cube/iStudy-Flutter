@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:istudy/services/auth.dart';
 import 'package:istudy/widgets/image_banner.dart';
+import 'package:istudy/shared/constants.dart';
 
 class Register extends StatefulWidget {
   final Function toogleView;
@@ -44,98 +45,70 @@ class _RegisterState extends State<Register> {
       ),
       body: Container(
         padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            children: <Widget>[
-              ImageBanner(assetPath: "assets/images/logo.jpg"),
-              SizedBox(
-                height: 20.0,
-              ),
-              TextFormField(
-                decoration: InputDecoration(
-                  hintText: 'Email',
-                  fillColor: Colors.white,
-                  filled: true,
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Colors.grey,
-                      width: 2.0,
-                    ),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Colors.grey,
-                      width: 2.0,
-                    ),
-                  ),
+        child: SingleChildScrollView(
+          child: Form(
+            key: _formKey,
+            child: Column(
+              children: <Widget>[
+                ImageBanner(assetPath: "assets/images/logo.jpg"),
+                SizedBox(
+                  height: 20.0,
                 ),
-                validator: (val) =>
-                    val.isEmpty || !val.contains('@') ? 'Enter an email' : null,
-                onChanged: (val) {
-                  setState(() => email = val);
-                },
-              ),
-              SizedBox(
-                height: 20.0,
-              ),
-              TextFormField(
-                decoration: InputDecoration(
-                  hintText: 'Password',
-                  fillColor: Colors.white,
-                  filled: true,
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Colors.grey,
-                      width: 2.0,
+                TextFormField(
+                  decoration: formDecoration.copyWith(hintText: 'Email'),
+                  validator: (val) => val.isEmpty || !val.contains('@')
+                      ? 'Enter an email'
+                      : null,
+                  onChanged: (val) {
+                    setState(() => email = val);
+                  },
+                ),
+                SizedBox(
+                  height: 20.0,
+                ),
+                TextFormField(
+                  decoration: formDecoration.copyWith(hintText: 'Password'),
+                  obscureText: true,
+                  validator: (val) =>
+                      val.length < 6 ? 'Enter a password 6+ chars long' : null,
+                  onChanged: (val) {
+                    setState(() => password = val);
+                  },
+                ),
+                SizedBox(
+                  height: 20.0,
+                ),
+                RaisedButton(
+                  color: Colors.grey[100],
+                  child: Text(
+                    'Sign up',
+                    style: TextStyle(
+                      color: Colors.black,
                     ),
                   ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Colors.grey,
-                      width: 2.0,
-                    ),
-                  ),
-                ),
-                obscureText: true,
-                validator: (val) =>
-                    val.length < 6 ? 'Enter a password 6+ chars long' : null,
-                onChanged: (val) {
-                  setState(() => password = val);
-                },
-              ),
-              SizedBox(
-                height: 20.0,
-              ),
-              RaisedButton(
-                color: Colors.grey[100],
-                child: Text(
-                  'Sign up',
-                  style: TextStyle(
-                    color: Colors.black,
-                  ),
-                ),
-                onPressed: () async {
-                  if (_formKey.currentState.validate()) {
-                    dynamic result = await _authService.signUp(email, password);
-                    if (result == null) {
-                      setState(
-                          () => error = 'Please supply a valid combination.');
+                  onPressed: () async {
+                    if (_formKey.currentState.validate()) {
+                      dynamic result =
+                          await _authService.signUp(email, password);
+                      if (result == null) {
+                        setState(
+                            () => error = 'Please supply a valid combination.');
+                      }
                     }
-                  }
-                },
-              ),
-              SizedBox(
-                height: 12.0,
-              ),
-              Text(
-                error,
-                style: TextStyle(
-                  color: Colors.red,
-                  fontSize: 14.0,
+                  },
                 ),
-              )
-            ],
+                SizedBox(
+                  height: 12.0,
+                ),
+                Text(
+                  error,
+                  style: TextStyle(
+                    color: Colors.red,
+                    fontSize: 14.0,
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),
