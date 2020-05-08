@@ -30,6 +30,18 @@ class AuthService {
   //sign in
 
   //register
+  Future signUp(String email, String password) async {
+    try {
+      AuthResult authResult = await _firebaseAuth
+          .createUserWithEmailAndPassword(email: email, password: password);
+
+      FirebaseUser firebaseUser = authResult.user;
+      return _userFromFirebase(firebaseUser);
+    } catch (e) {
+      print(e.toString());
+      return null;
+    }
+  }
 
   //sign out
 
