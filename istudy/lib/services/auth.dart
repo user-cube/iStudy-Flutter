@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:istudy/models/user.dart';
+import 'package:istudy/services/profile.dart';
 
 class AuthService {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
@@ -30,12 +31,16 @@ class AuthService {
   }
 
   //register
-  Future signUp(String email, String password) async {
+  Future signUp(String email, String password, String name, int role) async {
     try {
+      print(name);
+      print(role);
       AuthResult authResult = await _firebaseAuth
           .createUserWithEmailAndPassword(email: email, password: password);
 
       FirebaseUser firebaseUser = authResult.user;
+      await ProfileService(uid: firebaseUser.uid).updateUserProfile(name, role);
+
       return _userFromFirebase(firebaseUser);
     } catch (e) {
       print("SignUp Error: " + e.toString());

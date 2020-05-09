@@ -19,6 +19,24 @@ class _RegisterState extends State<Register> {
   String email = '';
   String password = '';
   String error = '';
+  String name = '';
+  int role = 0;
+  int _radioValue1 = 0;
+  void _handleRadioValueChange1(int value) {
+    setState(() {
+      switch (value) {
+        case 0:
+          role = 0;
+          break;
+        case 1:
+          role = 1;
+          break;
+        default:
+          role = role;
+          break;
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -58,6 +76,27 @@ class _RegisterState extends State<Register> {
                       SizedBox(
                         height: 20.0,
                       ),
+                      Text(
+                        error,
+                        style: TextStyle(
+                          color: Colors.red,
+                          fontSize: 14.0,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 20.0,
+                      ),
+                      TextFormField(
+                        decoration: formDecoration.copyWith(hintText: 'Name'),
+                        validator: (val) =>
+                            val.isEmpty ? 'Enter your name' : null,
+                        onChanged: (val) {
+                          setState(() => name = val);
+                        },
+                      ),
+                      SizedBox(
+                        height: 20.0,
+                      ),
                       TextFormField(
                         decoration: formDecoration.copyWith(hintText: 'Email'),
                         validator: (val) => val.isEmpty || !val.contains('@')
@@ -84,6 +123,40 @@ class _RegisterState extends State<Register> {
                       SizedBox(
                         height: 20.0,
                       ),
+                      ButtonBar(
+                        alignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Radio(
+                            value: 0,
+                            groupValue: _radioValue1,
+                            activeColor: Colors.green,
+                            onChanged: (val) {
+                              setState(
+                                () {
+                                  role = 0;
+                                },
+                              );
+                            },
+                          ),
+                          Text('Student'),
+                          Radio(
+                            value: 1,
+                            groupValue: _radioValue1,
+                            activeColor: Colors.blue,
+                            onChanged: (val) {
+                              setState(
+                                () {
+                                  role = 1;
+                                },
+                              );
+                            },
+                          ),
+                          Text('Teacher'),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 20.0,
+                      ),
                       RaisedButton(
                         color: Colors.grey[100],
                         child: Text(
@@ -94,9 +167,11 @@ class _RegisterState extends State<Register> {
                         ),
                         onPressed: () async {
                           if (_formKey.currentState.validate()) {
+                            print(role);
+                            print(name);
                             setState(() => loading = true);
-                            dynamic result =
-                                await _authService.signUp(email, password);
+                            dynamic result = await _authService.signUp(
+                                email, password, name, role);
                             if (result == null) {
                               setState(
                                 () {
@@ -108,16 +183,6 @@ class _RegisterState extends State<Register> {
                           }
                         },
                       ),
-                      SizedBox(
-                        height: 12.0,
-                      ),
-                      Text(
-                        error,
-                        style: TextStyle(
-                          color: Colors.red,
-                          fontSize: 14.0,
-                        ),
-                      )
                     ],
                   ),
                 ),
