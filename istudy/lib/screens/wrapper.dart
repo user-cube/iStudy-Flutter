@@ -33,9 +33,12 @@ class _HandleAuhtenticationState extends State<HandleAuhtentication> {
   @override
   void initState() {
     super.initState();
-    final user = Provider.of<User>(context);
-    print(user);
-    if (user != null) checkRole(user.uid);
+    try {
+      final user = Provider.of<User>(context);
+      if (user != null) checkRole(user.uid);
+    } catch (e) {
+      print("Error: " + e.toString());
+    }
   }
 
   @override
