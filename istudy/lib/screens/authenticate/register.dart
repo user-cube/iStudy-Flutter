@@ -167,8 +167,6 @@ class _RegisterState extends State<Register> {
                         ),
                         onPressed: () async {
                           if (_formKey.currentState.validate()) {
-                            print(role);
-                            print(name);
                             setState(() => loading = true);
                             dynamic result = await _authService.signUp(
                                 email, password, name, role);
