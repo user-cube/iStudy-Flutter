@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:istudy/screens/home/teacher/home.dart';
 import 'package:istudy/services/auth.dart';
 import 'package:istudy/widgets/image_banner.dart';
 import 'package:istudy/shared/constants.dart';
@@ -23,21 +22,6 @@ class _RegisterState extends State<Register> {
   String name = '';
   int role = 0;
   int _radioValue1 = 0;
-  void _handleRadioValueChange1(int value) {
-    setState(() {
-      switch (value) {
-        case 0:
-          role = 0;
-          break;
-        case 1:
-          role = 1;
-          break;
-        default:
-          role = role;
-          break;
-      }
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
