@@ -27,7 +27,15 @@ class _HandleAuhtenticationState extends State<HandleAuhtentication> {
         .collection('profile')
         .document(uid)
         .get()
-        .then((value) => role = value.data['role']);
+        .then((value) => setState(() => role = value.data['role']));
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    final user = Provider.of<User>(context);
+    print(user);
+    if (user != null) checkRole(user.uid);
   }
 
   @override

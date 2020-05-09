@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:istudy/screens/home/teacher/home.dart';
 import 'package:istudy/services/auth.dart';
 import 'package:istudy/widgets/image_banner.dart';
 import 'package:istudy/shared/constants.dart';
@@ -134,6 +135,7 @@ class _RegisterState extends State<Register> {
                               setState(
                                 () {
                                   role = 0;
+                                  _radioValue1 = 0;
                                 },
                               );
                             },
@@ -142,11 +144,12 @@ class _RegisterState extends State<Register> {
                           Radio(
                             value: 1,
                             groupValue: _radioValue1,
-                            activeColor: Colors.blue,
+                            activeColor: Colors.green,
                             onChanged: (val) {
                               setState(
                                 () {
                                   role = 1;
+                                  _radioValue1 = 1;
                                 },
                               );
                             },
