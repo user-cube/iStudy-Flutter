@@ -5,8 +5,9 @@ import 'package:istudy/services/auth.dart';
 class StudentDrawer extends StatelessWidget {
   final AuthService _authService = AuthService();
 
-  final String title;
-  StudentDrawer({Key key, this.title}) : super(key: key);
+  // final String title;
+  // StudentDrawer({Key key, this.title}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
