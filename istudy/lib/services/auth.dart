@@ -1,5 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:istudy/models/user.dart';
+import 'package:istudy/models/user/user.dart';
 import 'package:istudy/services/profile.dart';
 
 class AuthService {

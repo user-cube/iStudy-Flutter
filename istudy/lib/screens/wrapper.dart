@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:istudy/models/user.dart';
+import 'package:istudy/models/user/user.dart';
 import 'package:istudy/screens/authenticate/authenticate.dart';
 import 'package:istudy/screens/home/student/home.dart';
 import 'package:istudy/screens/home/teacher/home.dart';
