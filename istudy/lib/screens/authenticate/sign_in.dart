@@ -28,6 +28,7 @@ class _SignInState extends State<SignIn> {
         : Scaffold(
             backgroundColor: Colors.white,
             appBar: AppBar(
+              automaticallyImplyLeading: false,
               backgroundColor: Colors.blue[400],
               elevation: 0.0,
               title: Text('Sign in'),
@@ -125,16 +126,3 @@ class _SignInState extends State<SignIn> {
           );
   }
 }
-
-// RaisedButton(
-//           child: Text('sing in'),
-//           onPressed: () async {
-//             dynamic result = await _authService.signInAnon();
-//             if (result == null) {
-//               print('error signing in');
-//             } else {
-//               print('signed');
-//               print(result.uid);
-//             }
-//           },
-//         ),

@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:istudy/services/auth.dart';
 
-class MyDrawer extends StatelessWidget {
+class TeacherDrawer extends StatelessWidget {
+  final AuthService _authService = AuthService();
+
   final String title;
-  MyDrawer({Key key, this.title}) : super(key: key);
+  TeacherDrawer({Key key, this.title}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -12,13 +15,13 @@ class MyDrawer extends StatelessWidget {
       drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
-          children: const <Widget>[
+          children: <Widget>[
             DrawerHeader(
               decoration: BoxDecoration(
                 color: Colors.blue,
               ),
               child: Text(
-                'Drawer Header',
+                'iStudy - Teacher',
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 24,
@@ -34,8 +37,11 @@ class MyDrawer extends StatelessWidget {
               title: Text('Profile'),
             ),
             ListTile(
-              leading: Icon(Icons.settings),
-              title: Text('Settings'),
+              leading: Icon(Icons.exit_to_app),
+              title: Text('Sign out'),
+              onTap: () async {
+                await _authService.signOut();
+              },
             ),
           ],
         ),

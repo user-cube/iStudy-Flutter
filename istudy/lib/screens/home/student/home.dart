@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:istudy/services/auth.dart';
-import 'package:istudy/widgets/drawer.dart';
+import 'package:istudy/drawers/student/drawer.dart';
 
-class Home extends StatelessWidget {
-  final AuthService _authService = AuthService();
+class StudentHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MyDrawer(
+    return StudentDrawer(
       title: 'My Notes',
     );
   }

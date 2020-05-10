@@ -49,9 +49,9 @@ class _HandleAuhtenticationState extends State<HandleAuhtentication> {
     } else {
       checkRole(user.uid);
       if (role == 1) {
-        return THome();
+        return TeacherHome();
       }
-      return Home();
+      return StudentHome();
     }
   }
 }
