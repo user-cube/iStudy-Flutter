@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:istudy/screens/home/teacher/home.dart';
+import 'package:istudy/screens/teacher/home/home.dart';
 import 'package:istudy/screens/wrapper.dart';
 import 'package:istudy/services/auth.dart';
 import 'package:provider/provider.dart';
 import 'package:istudy/models/user/user.dart';
-import 'package:istudy/screens/home/student/home.dart';
+import 'package:istudy/screens/student/home/home.dart';
 import 'style.dart';
+import 'package:istudy/screens/student/note_detail/note_detail.dart';
 
-const SHome = "/";
-const THome = "/teacher/";
+const StudentHomeRoute = "/";
+const TeacherHomeRoute = "/teacher/";
+const NoteDetailRoute = "/note_detail";
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -29,11 +31,14 @@ class MyApp extends StatelessWidget {
       final Map<String, dynamic> arguments = settings.arguments;
       Widget screen;
       switch (settings.name) {
-        case SHome:
+        case StudentHomeRoute:
           screen = StudentHome();
           break;
-        case THome:
+        case TeacherHomeRoute:
           screen = TeacherHome();
+          break;
+        case NoteDetailRoute:
+          screen = NoteDetail(arguments['id']);
           break;
         default:
           return null;
