@@ -27,15 +27,15 @@ class StudentDrawer extends StatelessWidget {
           ),
         ),
         ListTile(
+          leading: Icon(Icons.account_circle),
+          title: Text('Profile'),
+        ),
+        ListTile(
           leading: Icon(Icons.speaker_notes),
           title: Text('My Notes'),
           onTap: () {
             Navigator.pushNamed(context, StudentHomeRoute);
           },
-        ),
-        ListTile(
-          leading: Icon(Icons.account_circle),
-          title: Text('Profile'),
         ),
         ListTile(
           leading: Icon(Icons.favorite),
