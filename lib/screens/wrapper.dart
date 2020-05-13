@@ -4,6 +4,7 @@ import 'package:istudy/models/user/user.dart';
 import 'package:istudy/screens/authenticate/authenticate.dart';
 import 'package:istudy/screens/student/home/home.dart';
 import 'package:istudy/screens/teacher/home/home.dart';
+import 'package:istudy/widgets/loading.dart';
 import 'package:provider/provider.dart';
 
 class Wrapper extends StatelessWidget {
@@ -20,10 +21,11 @@ class HandleAuhtentication extends StatefulWidget {
 }
 
 class _HandleAuhtenticationState extends State<HandleAuhtentication> {
+  bool loading = false;
   final Firestore _firestore = Firestore.instance;
   dynamic role;
   Future checkRole(String uid) async {
-    _firestore
+    await _firestore
         .collection('profile')
         .document(uid)
         .get()
@@ -49,9 +51,21 @@ class _HandleAuhtenticationState extends State<HandleAuhtentication> {
     } else {
       checkRole(user.uid);
       if (role == 1) {
+        setState(() {
+          loading = false;
+          role = null;
+        });
         return TeacherHome();
       }
-      return StudentHome();
+      if (role == 0) {
+        setState(() {
+          loading = false;
+          role = null;
+        });
+        return StudentHome();
+      }
+      setState(() => loading = true);
+      return Loading();
     }
   }
 }
