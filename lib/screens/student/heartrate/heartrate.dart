@@ -11,11 +11,7 @@ class HeartRateMonitor extends StatefulWidget {
   _HeartRateMonitorState createState() => _HeartRateMonitorState();
 }
 
-dynamic heartrate;
-
 class _HeartRateMonitorState extends State<HeartRateMonitor> {
-  PermissionStatus _status;
-
   void checkPermissions() async {
     if (await Permission.sensors.request().isGranted) {
       FirebaseUser user = await FirebaseAuth.instance.currentUser();
