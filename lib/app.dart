@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:istudy/screens/student/heartrate/heartrate.dart';
 import 'package:istudy/screens/teacher/home/home.dart';
 import 'package:istudy/screens/wrapper.dart';
 import 'package:istudy/services/auth.dart';
@@ -11,6 +12,7 @@ import 'package:istudy/screens/student/note_detail/note_detail.dart';
 const StudentHomeRoute = "/";
 const TeacherHomeRoute = "/teacher/";
 const NoteDetailRoute = "/note_detail";
+const HeartRateMonitorRoute = "/heartrate";
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -39,6 +41,9 @@ class MyApp extends StatelessWidget {
           break;
         case NoteDetailRoute:
           screen = NoteDetail(arguments['id']);
+          break;
+        case HeartRateMonitorRoute:
+          screen = HeartRateMonitor();
           break;
         default:
           return null;
