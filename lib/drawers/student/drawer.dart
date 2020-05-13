@@ -38,6 +38,13 @@ class StudentDrawer extends StatelessWidget {
           title: Text('Profile'),
         ),
         ListTile(
+          leading: Icon(Icons.favorite),
+          title: Text('Heart Rate Monitor'),
+          onTap: () {
+            Navigator.pushNamed(context, HeartRateMonitorRoute);
+          },
+        ),
+        ListTile(
           leading: Icon(Icons.exit_to_app),
           title: Text('Sign out'),
           onTap: () async {
