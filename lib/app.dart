@@ -48,7 +48,6 @@ class MyApp extends StatelessWidget {
           screen = HeartRateMonitor();
           break;
         case ProfileRoute:
-          //
           break;
         default:
           return null;

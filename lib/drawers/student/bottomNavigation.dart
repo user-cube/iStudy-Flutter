@@ -27,6 +27,7 @@ class _BottomNavigatorBarState extends State<BottomNavigatorBar> {
             setState(() => myIndex = 2);
             break;
           default:
+            setState(() => myIndex = null);
             break;
         }
       },
@@ -42,7 +43,7 @@ class _BottomNavigatorBarState extends State<BottomNavigatorBar> {
         BottomNavigationBarItem(
           icon: Icon(Icons.person),
           title: Text('Profile'),
-        )
+        ),
       ],
     );
   }
