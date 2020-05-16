@@ -11,8 +11,10 @@ import 'package:istudy/screens/student/note_detail/note_detail.dart';
 
 const StudentHomeRoute = "/";
 const TeacherHomeRoute = "/teacher/";
+const ProfileRoute = "/profile";
 const NoteDetailRoute = "/note_detail";
 const HeartRateMonitorRoute = "/heartrate";
+const AddNotesRoute = "/notes/add";
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -44,6 +46,8 @@ class MyApp extends StatelessWidget {
           break;
         case HeartRateMonitorRoute:
           screen = HeartRateMonitor();
+          break;
+        case ProfileRoute:
           break;
         default:
           return null;

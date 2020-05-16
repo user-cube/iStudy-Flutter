@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:istudy/drawers/student/bottomNavigation.dart';
 import 'package:istudy/drawers/student/drawer.dart';
 import 'package:istudy/models/notes/notes.dart';
 import 'package:istudy/screens/student/home/tile_overlay.dart';
@@ -18,6 +19,7 @@ class StudentHome extends StatelessWidget {
         itemBuilder: (context, index) => _itemBuilder(context, notes[index]),
       ),
       drawer: StudentDrawer(),
+      bottomNavigationBar: BottomNavigatorBar(),
     );
   }
 
