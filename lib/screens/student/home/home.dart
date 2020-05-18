@@ -19,7 +19,7 @@ class StudentHome extends StatelessWidget {
         itemBuilder: (context, index) => _itemBuilder(context, notes[index]),
       ),
       drawer: StudentDrawer(),
-      bottomNavigationBar: BottomNavigatorBar(),
+      bottomNavigationBar: BottomNavigatorBar(0),
     );
   }
 

@@ -82,7 +82,7 @@ class _HeartRateMonitorState extends State<HeartRateMonitor>
       appBar: AppBar(
         title: Text('Heart Rate Monitor'),
       ),
-      bottomNavigationBar: BottomNavigatorBar(),
+      bottomNavigationBar: BottomNavigatorBar(1),
       drawer: StudentDrawer(),
       body: Column(
         children: <Widget>[
