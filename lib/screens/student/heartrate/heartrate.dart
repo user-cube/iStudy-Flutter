@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:istudy/drawers/student/bottomNavigation.dart';
 import 'package:istudy/drawers/student/drawer.dart';
 import 'package:istudy/services/heartrate.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -81,6 +82,7 @@ class _HeartRateMonitorState extends State<HeartRateMonitor>
       appBar: AppBar(
         title: Text('Heart Rate Monitor'),
       ),
+      bottomNavigationBar: BottomNavigatorBar(),
       drawer: StudentDrawer(),
       body: Column(
         children: <Widget>[

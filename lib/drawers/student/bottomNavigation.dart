@@ -21,20 +21,29 @@ class _BottomNavigatorBarState extends State<BottomNavigatorBar> {
             break;
           case 1:
             setState(() => myIndex = 1);
-            Navigator.pushNamed(context, AddNotesRoute);
+            Navigator.pushNamed(context, HeartRateMonitorRoute);
             break;
           case 2:
             setState(() => myIndex = 2);
+            Navigator.pushNamed(context, AddNotesRoute);
+            break;
+          case 3:
+            setState(() => myIndex = 3);
             break;
           default:
             setState(() => myIndex = null);
             break;
         }
       },
+      type: BottomNavigationBarType.fixed,
       items: [
         BottomNavigationBarItem(
           icon: Icon(Icons.speaker_notes),
           title: Text('My Notes'),
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.favorite_border),
+          title: Text('Heart Rate'),
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.camera_alt),

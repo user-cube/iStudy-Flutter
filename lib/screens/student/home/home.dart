@@ -23,11 +23,11 @@ class StudentHome extends StatelessWidget {
     );
   }
 
-  _onLocationTap(BuildContext context, int locationID) {
+  _onLocationTap(BuildContext context, int noteID) {
     Navigator.pushNamed(
       context,
       NoteDetailRoute,
-      arguments: {"id": locationID},
+      arguments: {"id": noteID},
     );
   }
 
