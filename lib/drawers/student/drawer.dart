@@ -30,6 +30,9 @@ class StudentDrawer extends StatelessWidget {
         ListTile(
           leading: Icon(Icons.account_circle),
           title: Text('Profile'),
+          onTap: () {
+            Navigator.pushNamed(context, ProfileRoute);
+          },
         ),
         ListTile(
           leading: Icon(Icons.speaker_notes),
@@ -49,7 +52,7 @@ class StudentDrawer extends StatelessWidget {
           leading: Icon(FontAwesomeIcons.qrcode),
           title: Text('Attendance'),
           onTap: () {
-            Navigator.pushNamed(context, HeartRateMonitorRoute);
+            Navigator.pushNamed(context, AttendanceRoute);
           },
         ),
         ListTile(
