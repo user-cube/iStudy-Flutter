@@ -33,6 +33,11 @@ class _BottomNavigatorBarState extends State<BottomNavigatorBar> {
             break;
           case 3:
             //setState(() => myIndex = 3);
+            Navigator.pushNamed(context, AttendanceRoute);
+            break;
+          case 4:
+            //setState(() => myIndex = 3);
+            Navigator.pushNamed(context, ProfileRoute);
             break;
           default:
             //setState(() => myIndex = null);
