@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:istudy/app.dart';
 import 'package:istudy/drawers/student/bottomNavigation.dart';
 import 'package:istudy/drawers/student/drawer.dart';
 import 'package:istudy/services/auth.dart';
@@ -9,6 +10,7 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
+  final AuthService _authService = AuthService();
   @override
   void initState() {
     super.initState();
@@ -30,7 +32,48 @@ class _ProfileState extends State<Profile> {
       body: Column(
         children: <Widget>[
           Container(
-            child: Text("Profile"),
+            child: Image.asset("assets/images/logo.jpg"),
+          ),
+          SizedBox(
+            height: 20.0,
+          ),
+          Container(
+            child: Text('Rui Coelho'),
+          ),
+          SizedBox(
+            height: 20.0,
+          ),
+          Container(
+            child: Text("ruicoelho@ua.pt"),
+          ),
+          SizedBox(
+            height: 20.0,
+          ),
+          RaisedButton(
+            color: Colors.blue[100],
+            child: Text(
+              'Update profile',
+              style: TextStyle(
+                color: Colors.black,
+              ),
+            ),
+            onPressed: () async {},
+          ),
+          SizedBox(
+            height: 20.0,
+          ),
+          RaisedButton(
+            color: Colors.red[100],
+            child: Text(
+              'Logout',
+              style: TextStyle(
+                color: Colors.black,
+              ),
+            ),
+            onPressed: () async {
+              await _authService.signOut();
+              Navigator.pushNamed(context, StudentHomeRoute);
+            },
           ),
         ],
       ),
