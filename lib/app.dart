@@ -1,3 +1,4 @@
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:istudy/screens/student/heartrate/heartrate.dart';
 import 'package:istudy/screens/teacher/home/home.dart';
@@ -8,6 +9,7 @@ import 'package:istudy/models/user/user.dart';
 import 'package:istudy/screens/student/home/home.dart';
 import 'style.dart';
 import 'package:istudy/screens/student/note_detail/note_detail.dart';
+import 'package:istudy/screens/student/addnote/addnote.dart';
 
 const StudentHomeRoute = "/";
 const TeacherHomeRoute = "/teacher/";
@@ -17,6 +19,12 @@ const HeartRateMonitorRoute = "/heartrate";
 const AddNotesRoute = "/notes/add";
 
 class MyApp extends StatelessWidget {
+  final CameraDescription camera;
+
+  const MyApp({
+    Key key,
+    @required this.camera,
+  }) : super(key: key);
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -48,6 +56,9 @@ class MyApp extends StatelessWidget {
           screen = HeartRateMonitor();
           break;
         case ProfileRoute:
+          break;
+        case AddNotesRoute:
+          screen = AddNote(camera: this.camera);
           break;
         default:
           return null;
