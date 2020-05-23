@@ -49,10 +49,8 @@ class _AttendanceState extends State<Attendance> {
                       maxLines: 2,
                       decoration: InputDecoration(
                         prefixIcon: Icon(Icons.wrap_text),
-                        helperText:
-                            'The barcode or qrcode you scan will be displayed in this area.',
-                        hintText:
-                            'The barcode or qrcode you scan will be displayed in this area.',
+                        helperText: '',
+                        hintText: 'Display Text from QRCode',
                         hintStyle: TextStyle(fontSize: 15),
                         contentPadding:
                             EdgeInsets.symmetric(horizontal: 7, vertical: 15),
