@@ -84,30 +84,50 @@ class _HeartRateMonitorState extends State<HeartRateMonitor>
       ),
       bottomNavigationBar: BottomNavigatorBar(1),
       drawer: StudentDrawer(),
-      body: Column(
-        children: <Widget>[
-          Container(
-            child: AnimatedBuilder(
-              animation: _heartAnimationController,
-              builder: (context, child) {
-                return Center(
-                  child: Container(
-                    child: Center(
-                      child: Icon(
-                        Icons.favorite,
-                        color: Colors.red,
-                        size: _heartAnimation.value,
-                      ),
-                    ),
+      body: Builder(
+        builder: (context) => Container(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              SizedBox(
+                height: 20.0,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  AnimatedBuilder(
+                    animation: _heartAnimationController,
+                    builder: (context, child) {
+                      return Center(
+                        child: Container(
+                          child: Center(
+                            child: Icon(
+                              Icons.favorite,
+                              color: Colors.red,
+                              size: _heartAnimation.value,
+                            ),
+                          ),
+                        ),
+                      );
+                    },
                   ),
-                );
-              },
-            ),
+                ],
+              ),
+              SizedBox(
+                height: 20.0,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Align(
+                    alignment: Alignment.center,
+                    child: Text(heartResult),
+                  )
+                ],
+              )
+            ],
           ),
-          Container(
-            child: Text(heartResult),
-          ),
-        ],
+        ),
       ),
     );
   }
