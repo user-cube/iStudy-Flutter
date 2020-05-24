@@ -159,18 +159,6 @@ class _TeacherHomeState extends State<TeacherHome> {
               ),
             ),
             Divider(height: 2, color: Colors.black26),
-            Container(
-              child: Row(
-                children: <Widget>[
-                  Icon(Icons.history, size: 16, color: Colors.black38),
-                  Text('  Generate History',
-                      style: TextStyle(fontSize: 14, color: Colors.black38)),
-                  Spacer(),
-                  Icon(Icons.chevron_right, size: 16, color: Colors.black38),
-                ],
-              ),
-              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 9),
-            )
           ],
         ),
       ),
@@ -203,28 +191,6 @@ class _TeacherHomeState extends State<TeacherHome> {
         ),
       ],
     );
-  }
-
-  Future _scan() async {
-    String barcode = await scanner.scan();
-    this._outputController.text = barcode;
-  }
-
-  Future _scanPhoto() async {
-    String barcode = await scanner.scanPhoto();
-    this._outputController.text = barcode;
-  }
-
-  Future _scanPath(String path) async {
-    String barcode = await scanner.scanPath(path);
-    this._outputController.text = barcode;
-  }
-
-  Future _scanBytes() async {
-    File file = await ImagePicker.pickImage(source: ImageSource.camera);
-    Uint8List bytes = file.readAsBytesSync();
-    String barcode = await scanner.scanBytes(bytes);
-    this._outputController.text = barcode;
   }
 
   Future _generateBarCode(String inputCode) async {
