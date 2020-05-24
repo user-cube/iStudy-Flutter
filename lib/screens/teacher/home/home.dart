@@ -1,11 +1,9 @@
 import 'dart:async';
-import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:istudy/drawers/teacher/bottomNavigationTeacher.dart';
 import 'package:istudy/drawers/teacher/drawer.dart';
 import 'package:qrscan/qrscan.dart' as scanner;
@@ -18,13 +16,11 @@ class TeacherHome extends StatefulWidget {
 class _TeacherHomeState extends State<TeacherHome> {
   Uint8List bytes = Uint8List(0);
   TextEditingController _inputController;
-  TextEditingController _outputController;
 
   @override
   initState() {
     super.initState();
     this._inputController = new TextEditingController();
-    this._outputController = new TextEditingController();
   }
 
   @override

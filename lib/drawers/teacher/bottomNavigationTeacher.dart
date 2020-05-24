@@ -26,10 +26,11 @@ class _BottomNavigatorBarTeacherState extends State<BottomNavigatorBarTeacher> {
             break;
           case 1:
             //setState(() => myIndex = 1);
-            Navigator.pushNamed(context, HeartRateMonitorRoute);
+            Navigator.pushNamed(context, AttendanceListRoute);
             break;
           default:
             //setState(() => myIndex = null);
+            Navigator.pushNamed(context, TeacherProfileRoute);
             break;
         }
       },
@@ -42,6 +43,10 @@ class _BottomNavigatorBarTeacherState extends State<BottomNavigatorBarTeacher> {
         BottomNavigationBarItem(
           icon: Icon(Icons.list),
           title: Text('Attendance List'),
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.person),
+          title: Text('Profile'),
         ),
       ],
     );

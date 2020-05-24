@@ -3,19 +3,20 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:istudy/drawers/teacher/bottomNavigationTeacher.dart';
+import 'package:istudy/drawers/teacher/drawer.dart';
 import 'package:istudy/app.dart';
-import 'package:istudy/drawers/student/bottomNavigation.dart';
-import 'package:istudy/drawers/student/drawer.dart';
 import 'package:istudy/services/auth.dart';
 import 'package:istudy/widgets/loading.dart';
 
-class Profile extends StatefulWidget {
+class ProfileTeacher extends StatefulWidget {
   @override
-  _ProfileState createState() => _ProfileState();
+  _ProfileTeacherState createState() => _ProfileTeacherState();
 }
 
-class _ProfileState extends State<Profile> {
+class _ProfileTeacherState extends State<ProfileTeacher> {
   final AuthService _authService = AuthService();
   final FirebaseStorage storage = FirebaseStorage();
   StorageReference storageReference = FirebaseStorage.instance.ref();
@@ -33,7 +34,13 @@ class _ProfileState extends State<Profile> {
           .child(uid)
           .getDownloadURL()
           .then((value) => setState(() => url = value));
-    } catch (e) {}
+    } on PlatformException catch (e) {
+      print(e.toString());
+    } on Exception catch (e) {
+      print(e.toString());
+    } catch (e) {
+      print(e.toString());
+    }
   }
 
   Future getUserName() async {
@@ -97,8 +104,8 @@ class _ProfileState extends State<Profile> {
             appBar: AppBar(
               title: Text('Profile'),
             ),
-            bottomNavigationBar: BottomNavigatorBar(4),
-            drawer: StudentDrawer(),
+            bottomNavigationBar: BottomNavigatorBarTeacher(2),
+            drawer: TeacherDrawer(),
             body: Builder(
               builder: (context) => Container(
                 child: Column(
@@ -240,7 +247,7 @@ class _ProfileState extends State<Profile> {
                           ),
                           onPressed: () async {
                             await _authService.signOut();
-                            Navigator.pushNamed(context, StudentHomeRoute);
+                            Navigator.pushNamed(context, LoginRoute);
                           },
                         ),
                       ],

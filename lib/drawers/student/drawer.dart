@@ -60,6 +60,7 @@ class StudentDrawer extends StatelessWidget {
           title: Text('Sign out'),
           onTap: () async {
             await _authService.signOut();
+            Navigator.pushNamed(context, LoginRoute);
           },
         ),
       ],
