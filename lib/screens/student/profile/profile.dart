@@ -1,19 +1,14 @@
 import 'dart:io';
-import 'dart:typed_data';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:istudy/app.dart';
 import 'package:istudy/drawers/student/bottomNavigation.dart';
 import 'package:istudy/drawers/student/drawer.dart';
-import 'package:istudy/models/user/user.dart';
 import 'package:istudy/services/auth.dart';
 import 'package:istudy/widgets/loading.dart';
-import 'package:provider/provider.dart';
 
 class Profile extends StatefulWidget {
   @override

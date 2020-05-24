@@ -30,7 +30,7 @@ class NotesTile extends StatelessWidget {
             ),
             Text(
               notes.userItinerarySummary.toUpperCase(),
-              style: Theme.of(context).textTheme.subtitle,
+              style: Theme.of(context).textTheme.subtitle2,
             ),
             Text(
               notes.shortDesc.toUpperCase(),

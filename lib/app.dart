@@ -32,13 +32,13 @@ class MyApp extends StatelessWidget {
   ThemeData _theme() {
     return ThemeData(
       appBarTheme: AppBarTheme(
-        textTheme: TextTheme(title: AppBarTextStyle),
+        textTheme: TextTheme(headline6: AppBarTextStyle),
       ),
       textTheme: TextTheme(
-          title: TitleTextStyle,
-          body1: Body1TextStyle,
+          headline6: TitleTextStyle,
+          bodyText2: Body1TextStyle,
           caption: CaptionTextStyle,
-          subtitle: SubTitleTextStyle),
+          subtitle2: SubTitleTextStyle),
     );
   }
 }
