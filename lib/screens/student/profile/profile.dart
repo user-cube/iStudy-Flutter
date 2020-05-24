@@ -75,7 +75,7 @@ class _ProfileState extends State<Profile> {
       StorageReference storageReference =
           FirebaseStorage.instance.ref().child(uid);
       StorageUploadTask storageUploadTask = storageReference.putFile(_image);
-      StorageTaskSnapshot snapshot = await storageUploadTask.onComplete;
+      await storageUploadTask.onComplete;
       setState(() {
         print("Profile picture uploaded.");
         Scaffold.of(context).showSnackBar(
