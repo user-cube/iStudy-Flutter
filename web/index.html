@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <meta name="description" content="A new Flutter project.">
+
+  <!-- iOS meta tags & icons -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="istudy">
+  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" type="image/png" href="favicon.png"/>
+
+  <title>istudy</title>
+  <link rel="manifest" href="manifest.json">
+</head>
+<body>
+  <script src="https://www.gstatic.com/firebasejs/7.14.3/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.14.3/firebase-analytics.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.14.3/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.14.3/firebase-firestore.js"></script>
+  <!-- This script installs service_worker.js to provide PWA functionality to
+       application. For more information, see:
+       https://developers.google.com/web/fundamentals/primers/service-workers -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function () {
+        navigator.serviceWorker.register('flutter_service_worker.js');
+      });
+    }
+  </script>
+  <script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+      apiKey: "AIzaSyD6sB9CmvMNaVK81uYkCE18DtK7_0Q1U8Q",
+      authDomain: "istudy-63238.firebaseapp.com",
+      databaseURL: "https://istudy-63238.firebaseio.com",
+      projectId: "istudy-63238",
+      storageBucket: "istudy-63238.appspot.com",
+      messagingSenderId: "100885144267",
+      appId: "1:100885144267:web:b2544f2bb55e633750714e",
+      measurementId: "G-TY163SHDHF"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+  </script>
+  <script src="main.dart.js" type="application/javascript"></script>
+</body>
+</html>
