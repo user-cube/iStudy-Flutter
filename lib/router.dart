@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:istudy/screens/attendance/attendance.dart';
-import 'package:istudy/screens/authenticate/sign_in.dart';
+import 'package:istudy/screens/student/attendance/attendance.dart';
 import 'package:istudy/screens/student/heartrate/heartrate.dart';
 import 'package:istudy/screens/student/home/home.dart';
 import 'package:istudy/screens/student/note_detail/note_detail.dart';
