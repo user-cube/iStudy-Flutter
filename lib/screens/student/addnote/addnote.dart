@@ -57,14 +57,17 @@ class _AddNoteState extends State<AddNote> {
           mainAxisAlignment: MainAxisAlignment.center,
           mainAxisSize: MainAxisSize.max,
           children: <Widget>[
+              Expanded(child:
               IconButton(
+                color: Colors.blue,
                 icon: Icon(Icons.photo_camera),
                 onPressed: () => _pickImage(ImageSource.camera),
-              ),
+              )),
+              Expanded(child:
               IconButton(
                 icon: Icon(Icons.photo_library),
                 onPressed: () => _pickImage(ImageSource.gallery),
-              ),
+              )),
             ],
           ),
       ),
