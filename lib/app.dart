@@ -19,13 +19,7 @@ const HeartRateMonitorRoute = "/heartrate";
 const AddNotesRoute = "/notes/add";
 
 class MyApp extends StatelessWidget {
-  final CameraDescription camera;
 
-  const MyApp({
-    Key key,
-    @required this.camera,
-  }) : super(key: key);
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return StreamProvider<User>.value(
@@ -58,7 +52,7 @@ class MyApp extends StatelessWidget {
         case ProfileRoute:
           break;
         case AddNotesRoute:
-          screen = AddNote(camera: this.camera);
+          screen = AddNote();
           break;
         default:
           return null;

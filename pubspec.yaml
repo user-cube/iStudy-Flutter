@@ -26,15 +26,20 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
   firebase_auth: ^0.15.2
+  firebase_storage: 3.0.4
   cloud_firestore: ^0.13.2
   provider: ^3.1.0
   flutter_spinkit: "^4.0.0"
   flutter_android: ^0.4.0
   permission_handler: ^5.0.0+hotfix.5
   flutter_launcher_icons: ^0.7.2+1
+  # Camera
   camera: 0.5.8+2
   path_provider: 1.6.9
   path: 1.6.4
+  # Image pickers
+  image_cropper: 1.0.2
+  image_picker: 0.6.0+17
 
 dev_dependencies:
   flutter_test:
