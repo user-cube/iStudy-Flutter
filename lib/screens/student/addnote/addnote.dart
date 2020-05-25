@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:istudy/drawers/student/bottomNavigation.dart';
+import 'package:istudy/drawers/student/drawer.dart';
 import 'package:istudy/screens/student/addnote/uploader.dart';
 import 'package:istudy/services/note.dart';
 import 'package:istudy/shared/constants.dart';
@@ -33,19 +35,18 @@ class _AddNoteState extends State<AddNote> {
     setState(() => _imageFile = null);
   }
 
-  List<Widget> buildChildren(){
+  List<Widget> buildChildren() {
     List<Widget> ret = [];
-    if (_imageFile != null){
+    if (_imageFile != null) {
       ret.add(Image.file(_imageFile));
-      ret.add(
-        Row(children: <Widget>[
+      ret.add(Row(
+        children: <Widget>[
           FlatButton(
             child: Icon(Icons.refresh),
             onPressed: _clear,
           ),
         ],
-        )
-      );
+      ));
       ret.add(Uploader(file: _imageFile));
       return ret;
     }
@@ -70,24 +71,24 @@ class _AddNoteState extends State<AddNote> {
   Widget _buildButtonRow() {
     List<Widget> ret = [];
     ret.add(
-      Expanded(child:
-      IconButton(
+      Expanded(
+          child: IconButton(
         color: Colors.blue,
         icon: Icon(Icons.photo_camera),
         onPressed: () => _pickImage(ImageSource.camera),
       )),
     );
     ret.add(
-      Expanded(child:
-      IconButton(
+      Expanded(
+          child: IconButton(
         icon: Icon(Icons.photo_library),
         onPressed: () => _pickImage(ImageSource.gallery),
       )),
     );
     if (_imageFile != null) {
       ret.add(
-        Expanded(child:
-        IconButton(
+        Expanded(
+            child: IconButton(
           icon: Icon(Icons.refresh),
           onPressed: () => _clear(),
         )),
@@ -96,30 +97,31 @@ class _AddNoteState extends State<AddNote> {
     return Row(children: ret);
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body:
-        Container(
-          margin: EdgeInsets.only(top: 20),
-          padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
-          child: ListView(
-            children: <Widget> [
-              this._buildImageBoxes(),
-              this._buildButtonRow(),
-              SizedBox(
-                height: 20.0,
-              ),
-              Form(
+      appBar: AppBar(
+        title: Text('Add note'),
+      ),
+      bottomNavigationBar: BottomNavigatorBar(2),
+      drawer: StudentDrawer(),
+      body: Container(
+        margin: EdgeInsets.only(top: 20),
+        padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
+        child: ListView(
+          children: <Widget>[
+            this._buildImageBoxes(),
+            this._buildButtonRow(),
+            SizedBox(
+              height: 20.0,
+            ),
+            Form(
               key: _formKey,
               child: Column(
                 children: <Widget>[
                   TextFormField(
                     decoration: formDecoration.copyWith(hintText: 'Subject'),
-                    validator: (val) => val.isEmpty
-                        ? 'Enter a subject'
-                        : null,
+                    validator: (val) => val.isEmpty ? 'Enter a subject' : null,
                     onChanged: (val) {
                       setState(() => subject = val);
                     },
@@ -131,9 +133,7 @@ class _AddNoteState extends State<AddNote> {
                     minLines: 2,
                     maxLines: 5,
                     decoration: formDecoration.copyWith(hintText: 'Notes'),
-                    validator: (val) => val.isEmpty
-                        ? ''
-                        : null,
+                    validator: (val) => val.isEmpty ? '' : null,
                     onChanged: (val) {
                       setState(() => notes = val);
                     },
@@ -151,19 +151,19 @@ class _AddNoteState extends State<AddNote> {
                     ),
                     onPressed: () async {
                       if (_formKey.currentState.validate()) {
-                        if (_imageFile != null){
+                        if (_imageFile != null) {
                           this.uploader.startUpload(_imageFile);
                         }
-                        this.uploader.save(this.subject,this.notes,"random");
+                        this.uploader.save(this.subject, this.notes, "random");
                       }
                     },
                   ),
                 ],
-              )
+              ),
             )
-            ]
-          )
-        )
+          ],
+        ),
+      ),
     );
   }
 }
