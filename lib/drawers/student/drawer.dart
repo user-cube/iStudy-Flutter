@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:istudy/app.dart';
 import 'package:istudy/services/auth.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class StudentDrawer extends StatelessWidget {
   final AuthService _authService = AuthService();
@@ -29,6 +30,9 @@ class StudentDrawer extends StatelessWidget {
         ListTile(
           leading: Icon(Icons.account_circle),
           title: Text('Profile'),
+          onTap: () {
+            Navigator.pushNamed(context, ProfileRoute);
+          },
         ),
         ListTile(
           leading: Icon(Icons.speaker_notes),
@@ -45,10 +49,18 @@ class StudentDrawer extends StatelessWidget {
           },
         ),
         ListTile(
+          leading: Icon(FontAwesomeIcons.qrcode),
+          title: Text('Attendance'),
+          onTap: () {
+            Navigator.pushNamed(context, AttendanceRoute);
+          },
+        ),
+        ListTile(
           leading: Icon(Icons.exit_to_app),
           title: Text('Sign out'),
           onTap: () async {
             await _authService.signOut();
+            Navigator.pushNamed(context, LoginRoute);
           },
         ),
       ],

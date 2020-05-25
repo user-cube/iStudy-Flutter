@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:istudy/app.dart';
 import 'package:istudy/services/auth.dart';
 
 class TeacherDrawer extends StatelessWidget {
@@ -25,18 +27,22 @@ class TeacherDrawer extends StatelessWidget {
             ),
           ),
           ListTile(
-            leading: Icon(Icons.message),
-            title: Text('Messages'),
+            leading: Icon(FontAwesomeIcons.qrcode),
+            title: Text('QRCode Generator'),
+            onTap: () {
+              Navigator.pushNamed(context, TeacherHomeRoute);
+            },
           ),
           ListTile(
-            leading: Icon(Icons.account_circle),
-            title: Text('Profile'),
+            leading: Icon(Icons.list),
+            title: Text('Attendance List'),
           ),
           ListTile(
             leading: Icon(Icons.exit_to_app),
             title: Text('Sign out'),
             onTap: () async {
               await _authService.signOut();
+              Navigator.pushNamed(context, LoginRoute);
             },
           ),
         ],

@@ -19,15 +19,15 @@ class StudentHome extends StatelessWidget {
         itemBuilder: (context, index) => _itemBuilder(context, notes[index]),
       ),
       drawer: StudentDrawer(),
-      bottomNavigationBar: BottomNavigatorBar(),
+      bottomNavigationBar: BottomNavigatorBar(0),
     );
   }
 
-  _onLocationTap(BuildContext context, int locationID) {
+  _onLocationTap(BuildContext context, int noteID) {
     Navigator.pushNamed(
       context,
       NoteDetailRoute,
-      arguments: {"id": locationID},
+      arguments: {"id": noteID},
     );
   }
 

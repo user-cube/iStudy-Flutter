@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:istudy/drawers/student/bottomNavigation.dart';
 import 'package:istudy/drawers/student/drawer.dart';
 import 'package:istudy/services/heartrate.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -81,31 +82,52 @@ class _HeartRateMonitorState extends State<HeartRateMonitor>
       appBar: AppBar(
         title: Text('Heart Rate Monitor'),
       ),
+      bottomNavigationBar: BottomNavigatorBar(1),
       drawer: StudentDrawer(),
-      body: Column(
-        children: <Widget>[
-          Container(
-            child: AnimatedBuilder(
-              animation: _heartAnimationController,
-              builder: (context, child) {
-                return Center(
-                  child: Container(
-                    child: Center(
-                      child: Icon(
-                        Icons.favorite,
-                        color: Colors.red,
-                        size: _heartAnimation.value,
-                      ),
-                    ),
+      body: Builder(
+        builder: (context) => Container(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              SizedBox(
+                height: 20.0,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  AnimatedBuilder(
+                    animation: _heartAnimationController,
+                    builder: (context, child) {
+                      return Center(
+                        child: Container(
+                          child: Center(
+                            child: Icon(
+                              Icons.favorite,
+                              color: Colors.red,
+                              size: _heartAnimation.value,
+                            ),
+                          ),
+                        ),
+                      );
+                    },
                   ),
-                );
-              },
-            ),
+                ],
+              ),
+              SizedBox(
+                height: 20.0,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Align(
+                    alignment: Alignment.center,
+                    child: Text(heartResult),
+                  )
+                ],
+              )
+            ],
           ),
-          Container(
-            child: Text(heartResult),
-          ),
-        ],
+        ),
       ),
     );
   }

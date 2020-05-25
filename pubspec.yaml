@@ -16,8 +16,6 @@ version: 1.0.0+1
 environment:
   sdk: ">=2.1.0 <3.0.0"
 
-
-
 dependencies:
   flutter:
     sdk: flutter
@@ -25,9 +23,10 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
-  firebase_auth: ^0.15.2
-  firebase_storage: 3.0.4
-  cloud_firestore: ^0.13.2
+
+  firebase_auth: ^0.16.0
+  cloud_firestore: ^0.12.9+4
+  firebase_storage: ^3.1.5
   provider: ^3.1.0
   flutter_spinkit: "^4.0.0"
   flutter_android: ^0.4.0
@@ -39,7 +38,10 @@ dependencies:
   path: 1.6.4
   # Image pickers
   image_cropper: 1.0.2
-  image_picker: 0.6.0+17
+  font_awesome_flutter: ">= 4.7.0"
+  qrscan: ^0.2.17
+  image_gallery_saver: ^1.2.2
+  image_picker: ^0.6.6+4
 
 dev_dependencies:
   flutter_test:
