@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:istudy/screens/student/addnote/addnote.dart';
 import 'package:istudy/screens/student/attendance/attendance.dart';
 import 'package:istudy/screens/student/heartrate/heartrate.dart';
 import 'package:istudy/screens/student/home/home.dart';
@@ -40,6 +41,9 @@ class Router {
           break;
         case ProfileRoute:
           screen = Profile();
+          break;
+        case AddNotesRoute:
+          screen = AddNote();
           break;
         case AttendanceRoute:
           screen = Attendance();
