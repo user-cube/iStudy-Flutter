@@ -6,6 +6,7 @@ import 'package:istudy/screens/student/home/home.dart';
 import 'package:istudy/screens/student/note_detail/note_detail.dart';
 import 'package:istudy/screens/student/profile/profile.dart';
 import 'package:istudy/screens/teacher/attendance/attendanceList.dart';
+import 'package:istudy/screens/teacher/attendance/attendanceList_detail.dart';
 import 'package:istudy/screens/teacher/home/home.dart';
 import 'package:istudy/screens/teacher/profile/profile.dart';
 import 'package:istudy/screens/wrapper.dart';
@@ -20,6 +21,7 @@ const AttendanceRoute = "/attendance";
 const TeacherProfileRoute = "/teacherprofile";
 const AttendanceListRoute = "/attendancelist";
 const LoginRoute = "/login";
+const AttendanceListDetailRoute = "/attendancelist/detail";
 
 class Router {
   RouteFactory routes() {
@@ -56,6 +58,9 @@ class Router {
           break;
         case LoginRoute:
           screen = Wrapper();
+          break;
+        case AttendanceListDetailRoute:
+          screen = AttendanceListDetail(arguments['id']);
           break;
         default:
           return null;

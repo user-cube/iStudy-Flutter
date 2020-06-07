@@ -17,6 +17,16 @@ class _AttendanceState extends State<Attendance> {
   TextEditingController _outputController;
   dynamic uid;
   dynamic email = "";
+  dynamic name = "";
+
+  Future getUserName() async {
+    Firestore.instance
+        .collection('profile')
+        .document(uid)
+        .get()
+        .then((value) => setState(() => name = value.data['name']));
+  }
+
   @override
   initState() {
     super.initState();
@@ -25,6 +35,7 @@ class _AttendanceState extends State<Attendance> {
       setState(() {
         uid = res.uid;
         email = res.email;
+        getUserName();
       });
     });
   }
@@ -116,15 +127,15 @@ class _AttendanceState extends State<Attendance> {
         contentSplited[1] + "-" + contentSplited[2] + "-" + contentSplited[3];
     String teacherID = contentSplited[4];
 
-    if (contentSplited.length == 5) {
+    if (contentSplited.length == 5 && name != "") {
       attendanceReference
           .document(teacherID)
           .collection('modules')
           .document(module + "-" + data)
           .collection('students')
           .document(uid)
-          .setData({'state': 'present', 'email': email});
-      this._outputController.text = barcode;
+          .setData({'state': 'present', 'email': email, 'name': name});
+      this._outputController.text = "Succesfully add to attendance list.";
     }
   }
 }
