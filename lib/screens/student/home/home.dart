@@ -3,13 +3,17 @@ import 'package:istudy/drawers/student/bottomNavigation.dart';
 import 'package:istudy/drawers/student/drawer.dart';
 import 'package:istudy/models/notes/notes.dart';
 import 'package:istudy/screens/student/home/tile_overlay.dart';
+import 'package:istudy/services/note.dart';
 import 'package:istudy/widgets/image_banner.dart';
 import 'package:istudy/app.dart';
 
 class StudentHome extends StatelessWidget {
+  NotesService nservice = new NotesService();
+
   @override
   Widget build(BuildContext context) {
     final notes = Notes.fetchAll();
+    nservice.fetchAll();
     return Scaffold(
       appBar: AppBar(
         title: Text('My notes'),
