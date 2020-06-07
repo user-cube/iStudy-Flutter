@@ -16,6 +16,7 @@ const AttendanceRoute = "/attendance";
 const TeacherProfileRoute = "/teacherprofile";
 const AttendanceListRoute = "/attendancelist";
 const LoginRoute = "/login";
+const AttendanceListDetailRoute = "/attendancelist/detail";
 
 class MyApp extends StatelessWidget {
   final Router _routes = Router();

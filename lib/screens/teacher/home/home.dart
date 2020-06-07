@@ -1,12 +1,15 @@
 import 'dart:async';
 import 'dart:typed_data';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:istudy/drawers/teacher/bottomNavigationTeacher.dart';
 import 'package:istudy/drawers/teacher/drawer.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:qrscan/qrscan.dart' as scanner;
+import 'package:logger/logger.dart';
 
 class TeacherHome extends StatefulWidget {
   @override
@@ -16,11 +19,21 @@ class TeacherHome extends StatefulWidget {
 class _TeacherHomeState extends State<TeacherHome> {
   Uint8List bytes = Uint8List(0);
   TextEditingController _inputController;
+  Logger logger = new Logger();
+  SnackBar snackBar;
+  dynamic uid;
+  dynamic email = "";
 
   @override
   initState() {
     super.initState();
     this._inputController = new TextEditingController();
+    FirebaseAuth.instance.currentUser().then((res) {
+      setState(() {
+        uid = res.uid;
+        email = res.email;
+      });
+    });
   }
 
   @override
@@ -48,8 +61,7 @@ class _TeacherHomeState extends State<TeacherHome> {
                       onSubmitted: (value) => _generateBarCode(value),
                       decoration: InputDecoration(
                         prefixIcon: Icon(Icons.text_fields),
-                        helperText:
-                            'Please input your code to generage qrcode image.',
+                        helperText: 'Use the model: MODULE-DD-MM-YYYY',
                         hintText: 'Please Input Your Code',
                         hintStyle: TextStyle(fontSize: 15),
                         contentPadding:
@@ -132,7 +144,6 @@ class _TeacherHomeState extends State<TeacherHome> {
                           flex: 5,
                           child: GestureDetector(
                             onTap: () async {
-                              SnackBar snackBar;
                               ImageGallerySaver.saveImage(this.bytes)
                                   .then((value) {
                                 snackBar = new SnackBar(
@@ -190,7 +201,27 @@ class _TeacherHomeState extends State<TeacherHome> {
   }
 
   Future _generateBarCode(String inputCode) async {
-    Uint8List result = await scanner.generateBarCode(inputCode);
-    this.setState(() => this.bytes = result);
+    logger.i(inputCode);
+    final CollectionReference attendanceReference =
+        Firestore.instance.collection('attendance');
+    var contentSplited = inputCode.split("-");
+
+    if (contentSplited.length == 4) {
+      attendanceReference
+          .document(uid)
+          .collection('modules')
+          .document(inputCode)
+          .setData({
+        'module': contentSplited[0],
+        'date': contentSplited[1] +
+            "-" +
+            contentSplited[2] +
+            "-" +
+            contentSplited[3],
+        'email': email,
+      });
+      Uint8List result = await scanner.generateBarCode(inputCode + "-" + uid);
+      this.setState(() => this.bytes = result);
+    }
   }
 }
