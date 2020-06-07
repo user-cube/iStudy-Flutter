@@ -27,6 +27,13 @@ class TeacherDrawer extends StatelessWidget {
             ),
           ),
           ListTile(
+            leading: Icon(Icons.account_circle),
+            title: Text('Profile'),
+            onTap: () {
+              Navigator.pushNamed(context, TeacherProfileRoute);
+            },
+          ),
+          ListTile(
             leading: Icon(FontAwesomeIcons.qrcode),
             title: Text('QRCode Generator'),
             onTap: () {
