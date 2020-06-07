@@ -1,7 +1,9 @@
 import 'dart:async';
 import 'dart:typed_data';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:istudy/drawers/student/bottomNavigation.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:istudy/drawers/student/drawer.dart';
 import 'package:qrscan/qrscan.dart' as scanner;
 
@@ -13,11 +15,18 @@ class Attendance extends StatefulWidget {
 class _AttendanceState extends State<Attendance> {
   Uint8List bytes = Uint8List(0);
   TextEditingController _outputController;
-
+  dynamic uid;
+  dynamic email = "";
   @override
   initState() {
     super.initState();
     this._outputController = new TextEditingController();
+    FirebaseAuth.instance.currentUser().then((res) {
+      setState(() {
+        uid = res.uid;
+        email = res.email;
+      });
+    });
   }
 
   @override
@@ -99,6 +108,23 @@ class _AttendanceState extends State<Attendance> {
 
   Future _scan() async {
     String barcode = await scanner.scan();
-    this._outputController.text = barcode;
+    final CollectionReference attendanceReference =
+        Firestore.instance.collection('attendance');
+    var contentSplited = barcode.split("-");
+    String module = contentSplited[0];
+    String data =
+        contentSplited[1] + "-" + contentSplited[2] + "-" + contentSplited[3];
+    String teacherID = contentSplited[4];
+
+    if (contentSplited.length == 5) {
+      attendanceReference
+          .document(teacherID)
+          .collection('modules')
+          .document(module + "-" + data)
+          .collection('students')
+          .document(uid)
+          .setData({'state': 'present', 'email': email});
+      this._outputController.text = barcode;
+    }
   }
 }
