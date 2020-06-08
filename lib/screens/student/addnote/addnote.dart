@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -20,9 +21,22 @@ class _AddNoteState extends State<AddNote> {
   File _imageFile;
   NotesService uploader = new NotesService();
   final _formKey = GlobalKey<FormState>();
+  String uid;
   String subject = '';
   String notes = '';
   bool isLoading = false;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
+  @protected
+  @mustCallSuper
+  void initState() {
+    getCurrentUser();
+  }
+
+  getCurrentUser() async {
+    final FirebaseUser user = await _auth.currentUser();
+    this.uid = user.uid.toString();
+  }
 
   /// Select an image via gallery or camera
   Future<void> _pickImage(ImageSource source) async {
