@@ -11,7 +11,7 @@ class ImageBanner extends StatelessWidget {
     return Container(
       constraints: BoxConstraints.expand(height: height),
       decoration: BoxDecoration(color: Colors.grey),
-      child: Image.asset(assetPath, fit: BoxFit.cover),
+      child: assetPath != null ? Image.network(assetPath, fit: BoxFit.cover) : null,
     );
   }
 }

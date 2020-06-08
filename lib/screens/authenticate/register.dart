@@ -57,7 +57,11 @@ class _RegisterState extends State<Register> {
                   key: _formKey,
                   child: Column(
                     children: <Widget>[
-                      ImageBanner(assetPath: "assets/images/logo.jpg"),
+                      Container(
+                        constraints: BoxConstraints.expand(height: 200),
+                        decoration: BoxDecoration(color: Colors.grey),
+                        child: Image.asset("assets/images/logo.jpg"),
+                      ),
                       SizedBox(
                         height: 20.0,
                       ),
