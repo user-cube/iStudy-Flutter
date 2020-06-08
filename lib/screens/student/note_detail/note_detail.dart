@@ -1,36 +1,51 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:istudy/models/notes/notes.dart';
+import 'package:istudy/services/note.dart';
 import 'package:istudy/widgets/home_tile.dart';
 import 'package:istudy/widgets/image_banner.dart';
 import 'text_section.dart';
 
 class NoteDetail extends StatelessWidget {
-  final int _noteID;
+  final String _noteID;
 
   NoteDetail(this._noteID);
 
+  NotesService nservice = new NotesService();
+
+  fetchNote() {
+    return nservice.fetchById(_noteID);
+  }
+
   @override
   Widget build(BuildContext context) {
-    final notes = Notes.fetchById(_noteID);
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(notes.name),
+        title: Text("Note"),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            ImageBanner(assetPath: notes.imagePath),
-            Padding(
+      body: FutureBuilder(
+        future: fetchNote(),
+        builder: (context, AsyncSnapshot<QuerySnapshot> snapshot){
+          return SingleChildScrollView(
+            child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              ImageBanner(assetPath: snapshot.data.documents[0]['picture']),
+              Padding(
                 padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 4.0),
                 child: NotesTile(
-                  notes: notes,
-                ))
-          ]..addAll(textSections(notes)),
-        ),
-      ),
+                notes: new Notes(name: snapshot.data.documents[0]['subject']),
+              )),
+              Padding(
+                  padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 10.0),
+                  child: Text(snapshot.data.documents[0]['note']))
+            ],
+            ),
+          );
+    }
+      )
     );
   }
 

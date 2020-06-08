@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:shortid/shortid.dart';
 
 class NotesService {
 
@@ -13,6 +13,7 @@ class NotesService {
 
   Future save(String subject, String note) async {
     return await firestore.document().setData({
+      'id': shortid.generate(),
       'subject': subject,
       'note': note,
       'picture': null
@@ -27,6 +28,7 @@ class NotesService {
     if (snapshot.error == null){
       final String downloadUrl = await snapshot.ref.getDownloadURL();
       await firestore.document().setData({
+        'id': shortid.generate(),
         'subject': subject,
         'note': note,
         'picture': downloadUrl
@@ -34,11 +36,11 @@ class NotesService {
     }
   }
 
-  fetchAll() async {
-    QuerySnapshot qS = await firestore.getDocuments();
-    qS.documents.forEach((element) {
-      String pic = element['picture'];
+  Future<QuerySnapshot> fetchAll() {
+    return firestore.getDocuments();
+  }
 
-    });
+  Future<QuerySnapshot> fetchById(String id){
+    return firestore.where("id == $id").getDocuments();
   }
 }

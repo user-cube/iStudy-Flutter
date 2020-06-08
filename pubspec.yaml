@@ -32,6 +32,8 @@ dependencies:
   flutter_android: ^0.4.0
   permission_handler: ^5.0.0+hotfix.5
   flutter_launcher_icons: ^0.7.2+1
+  uuid: 2.0.4
+  shortid: ^0.1.1
   # Camera
   camera: 0.5.8+2
   path_provider: 1.6.9
