@@ -69,7 +69,6 @@ class _ProfileState extends State<Profile> {
 
       setState(() {
         _image = image;
-        print("Image path $_image");
       });
     }
 
@@ -79,7 +78,6 @@ class _ProfileState extends State<Profile> {
       StorageUploadTask storageUploadTask = storageReference.putFile(_image);
       await storageUploadTask.onComplete;
       setState(() {
-        print("Profile picture uploaded.");
         Scaffold.of(context).showSnackBar(
           SnackBar(
             content: Text('Profile Picture Uploaded.'),
@@ -89,8 +87,6 @@ class _ProfileState extends State<Profile> {
       });
     }
 
-    print(url);
-    print(name);
     return uid == null
         ? Loading()
         : Scaffold(

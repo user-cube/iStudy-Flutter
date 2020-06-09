@@ -10,6 +10,7 @@ import 'package:istudy/drawers/teacher/drawer.dart';
 import 'package:istudy/app.dart';
 import 'package:istudy/services/auth.dart';
 import 'package:istudy/widgets/loading.dart';
+import 'package:logger/logger.dart';
 
 class ProfileTeacher extends StatefulWidget {
   @override
@@ -21,6 +22,7 @@ class _ProfileTeacherState extends State<ProfileTeacher> {
   final FirebaseStorage storage = FirebaseStorage();
   StorageReference storageReference = FirebaseStorage.instance.ref();
   final Firestore _firestore = Firestore.instance;
+  Logger _logger = new Logger();
 
   File _image;
   dynamic uid;
@@ -35,11 +37,11 @@ class _ProfileTeacherState extends State<ProfileTeacher> {
           .getDownloadURL()
           .then((value) => setState(() => url = value));
     } on PlatformException catch (e) {
-      print(e.toString());
+      _logger.d(e.toString());
     } on Exception catch (e) {
-      print(e.toString());
+      _logger.d(e.toString());
     } catch (e) {
-      print(e.toString());
+      _logger.d(e.toString());
     }
   }
 
@@ -76,7 +78,6 @@ class _ProfileTeacherState extends State<ProfileTeacher> {
 
       setState(() {
         _image = image;
-        print("Image path $_image");
       });
     }
 
@@ -86,7 +87,6 @@ class _ProfileTeacherState extends State<ProfileTeacher> {
       StorageUploadTask storageUploadTask = storageReference.putFile(_image);
       await storageUploadTask.onComplete;
       setState(() {
-        print("Profile picture uploaded.");
         Scaffold.of(context).showSnackBar(
           SnackBar(
             content: Text('Profile Picture Uploaded.'),
@@ -96,8 +96,6 @@ class _ProfileTeacherState extends State<ProfileTeacher> {
       });
     }
 
-    print(url);
-    print(name);
     return uid == null
         ? Loading()
         : Scaffold(

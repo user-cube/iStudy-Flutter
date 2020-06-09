@@ -5,6 +5,7 @@ import 'package:istudy/screens/authenticate/authenticate.dart';
 import 'package:istudy/screens/student/home/home.dart';
 import 'package:istudy/screens/teacher/home/home.dart';
 import 'package:istudy/widgets/loading.dart';
+import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
 
 class Wrapper extends StatelessWidget {
@@ -21,9 +22,11 @@ class HandleAuhtentication extends StatefulWidget {
 }
 
 class _HandleAuhtenticationState extends State<HandleAuhtentication> {
+  Logger _logger = new Logger();
   bool loading = false;
   final Firestore _firestore = Firestore.instance;
   dynamic role;
+
   Future checkRole(String uid) async {
     await _firestore
         .collection('profile')
@@ -39,7 +42,7 @@ class _HandleAuhtenticationState extends State<HandleAuhtentication> {
       final user = Provider.of<User>(context);
       if (user != null) checkRole(user.uid);
     } catch (e) {
-      print("Error: " + e.toString());
+      _logger.d(e.toString());
     }
   }
 

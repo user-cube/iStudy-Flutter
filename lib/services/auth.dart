@@ -1,9 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:istudy/models/user/user.dart';
 import 'package:istudy/services/profile.dart';
+import 'package:logger/logger.dart';
 
 class AuthService {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+  Logger _logger = new Logger();
 
   //create user object based on firebase user
 
@@ -25,7 +27,7 @@ class AuthService {
       FirebaseUser firebaseUser = authResult.user;
       return _userFromFirebase(firebaseUser);
     } catch (e) {
-      print("SignIn Error: " + e.toString());
+      _logger.d(e.toString());
       return null;
     }
   }
@@ -41,7 +43,7 @@ class AuthService {
 
       return _userFromFirebase(firebaseUser);
     } catch (e) {
-      print("SignUp Error: " + e.toString());
+      _logger.d(e.toString());
       return null;
     }
   }
@@ -52,7 +54,7 @@ class AuthService {
     try {
       return await _firebaseAuth.signOut();
     } catch (e) {
-      print("SignOut Error: " + e.toString());
+      _logger.d(e.toString());
       return null;
     }
   }

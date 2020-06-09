@@ -44,7 +44,6 @@ class _AttendanceListState extends State<AttendanceList> {
         .collection('modules')
         .getDocuments()
         .then((value) => setState(() {
-              print(value);
               isReady = true;
               querySnapshot = value;
               queryMap = querySnapshot.documents.asMap();

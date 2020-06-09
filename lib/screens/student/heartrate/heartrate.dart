@@ -34,9 +34,6 @@ class _HeartRateMonitorState extends State<HeartRateMonitor>
     if (sensor != null && isRunning != false) {
       var events = await sensor.subscribe();
       events.listen((SensorEvent event) {
-        print(event.values[0]);
-        print("var");
-        print(heartResult);
         if (event.values[0] != 0.0 && isRunning != false) {
           double value = event.values[0].roundToDouble();
           HeartRateService(uid: user.uid).addHeartRate(value);

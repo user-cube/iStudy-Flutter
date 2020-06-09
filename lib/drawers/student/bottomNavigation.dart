@@ -17,7 +17,6 @@ class _BottomNavigatorBarState extends State<BottomNavigatorBar> {
     return BottomNavigationBar(
       currentIndex: myIndex,
       onTap: (int index) {
-        print(index);
         switch (index) {
           case 0:
             //setState(() => myIndex = 0);

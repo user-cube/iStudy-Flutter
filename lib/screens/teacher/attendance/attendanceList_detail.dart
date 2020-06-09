@@ -91,11 +91,11 @@ class _AttendanceListDetailState extends State<AttendanceListDetail> {
               images.add(value);
             }));
       } on PlatformException catch (e) {
-        print(e.toString());
+        logger.d(e.toString());
       } on Exception catch (e) {
-        print(e.toString());
+        logger.d(e.toString());
       } catch (e) {
-        print(e.toString());
+        logger.d(e.toString());
       }
     }
     isReady = true;
